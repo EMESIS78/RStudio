@@ -1,0 +1,131 @@
+Ejercicios RStudio
+
+1. Clasificacion de números Positivos y Negativos
+for (i in 1:10) {
+  numero <- as.numeric(readline(prompt = paste("Ingresa un número")))
+  if (numero > 0) {
+    print(paste("Número: ", numero, "Positivo"))
+  } else if (numero < 0) {
+    print(paste("Número: ", numero, "Negativo"))
+  } else {
+    print("Es el número 0:", numero, "es Cero")
+  }
+}
+
+
+2. Calculo de números Pares e Impares
+set.seed(123)
+numeros <- sample(1:100, 100, replace = TRUE)
+pares <- 0
+impares <- 0
+
+for (i in 1:length(numeros)) {
+  if (numeros[i] %% 2 == 0) {
+    pares <- pares + 1
+  } else {
+    impares <- impares + 1
+  }
+}
+cat("Semilla utilizada:", 123, "\nNumeros elegidos aleatoriamente\n", numeros, "\n\n")
+cat("Pares:", pares,"\n")
+cat("Impares:", impares)
+
+
+3. Suma de los primeros N números
+numero <- as.numeric(readline(prompt = "Ingresa un número: "))
+suma <- 0
+for (i in 1:numero) {
+  suma <- suma + i
+}
+print(paste("La suma de los numeros del 1 hasta", numero, "es", suma))
+
+
+4. Número de Fibonacci
+fibonacci <- c(0, 1)
+
+while (length(fibonacci) < 20) {
+  fibonacci <- c(fibonacci, tail(fibonacci, 2)[1] + tail(fibonacci, 2)[2])
+}
+
+print(fibonacci)
+
+
+5. Cálculo de Factorial
+n <- as.numeric(readline("Ingresa un número n: "))
+factorial <- 1
+if (!is.na(n) && n >= 0) {
+  for (i in 1:n) {
+    factorial <- factorial * i
+  }
+  print(paste("El factorial de", n, "es:", factorial))
+} else {
+  print("Ingresar Número")
+}
+
+
+6. Juego de adivinanza
+numero_secreto <- sample(1:100, 1)
+adivinanza <- as.integer(readline(prompt="Adivina el número (entre 1 y 100): "))
+while(adivinanza != numero_secreto) {
+  if(adivinanza > numero_secreto) {
+    adivinanza <- as.integer(readline(prompt="Es menor. Intenta de nuevo: "))
+  } else {
+    adivinanza <- as.integer(readline(prompt="Es mayor. Intenta de nuevo: "))
+  }
+  cat("¡Felicitaciones! Adivinaste el número.")
+}
+
+
+7. Validación de contraseña
+password <- "admin123"
+adivina_password <- readline(prompt="Ingresa tu contraseña Usuario: ")
+intentos <- 3
+while (adivina_password != password && intentos > 0) {
+  intentos <- intentos - 1
+  if (intentos > 0) {
+    adivina_password <- readline(prompt=paste("Contraseña incorrecta. Quedan", intentos, "intentos: "))
+  }
+}
+if (adivina_password == password) {
+  cat("Accediendo. Bienvenido Administrador.\n")
+} else {
+  cat("Contraseña incorrecta. Sin intentos D:\n")
+}
+
+
+8. Suma de dígitos de un número
+numero <- as.integer(readline(prompt="Ingresa un número entero: "))
+suma_digitos <- 0
+
+while (numero != 0) {
+  suma_digitos <- suma_digitos + numero %% 10
+  numero <- numero %/% 10
+}
+cat("La suma de los dígitos es:", suma_digitos)
+
+
+9. Impresión de patrones
+n <- as.integer(readline(prompt="Ingresa la cantidad de líneas: "))
+for (i in 1:n) {
+  cat(rep("*", i), "\n")
+}
+
+
+10. Números primos
+es_primo <- function(num) {
+  if (num <= 1) {
+    return(FALSE)
+  }
+  for (i in 2:sqrt(num)) {
+    if (num %% i == 0) {
+      return(FALSE)
+    }
+  }
+  return(TRUE)
+}
+
+for (num in 1:100) {
+  if (es_primo(num)) {
+    cat(num, " ")
+  }
+}
